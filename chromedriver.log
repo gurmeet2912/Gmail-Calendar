@@ -1,0 +1,170 @@
+[1728418566.232][INFO]: Starting ChromeDriver 129.0.6668.89 (951c0b97221f8d4ba37cf97d324505c832251cf9-refs/branch-heads/6668@{#1503}) on port 48876
+[1728418566.232][INFO]: Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1728418566.237][INFO]: ChromeDriver was started successfully on port 48876
+[1728418566.968][INFO]: [9885eb950e7d9556bd140090afc03f01] COMMAND InitSession {
+   "capabilities": {
+      "firstMatch": [ {
+         "browserName": "chrome",
+         "goog:chromeOptions": {
+            "args": [  ],
+            "extensions": [  ]
+         },
+         "goog:loggingPrefs": {
+            "browser": "INFO",
+            "driver": "ALL"
+         }
+      } ]
+   }
+}
+[1728418566.968][INFO]: Browser search. Trying... C:\Users\gillg\.cache\selenium\chromedriver\win64\129.0.6668.89\chrome.exe
+[1728418566.968][INFO]: Browser search. Trying... C:\Users\gillg\.cache\selenium\chromedriver\win64\129.0.6668.89\chrome.exe
+[1728418566.968][INFO]: Browser search. Trying... C:\Users\gillg\.cache\selenium\chromedriver\win64\129.0.6668.89\chromium.exe
+[1728418566.974][INFO]: Browser search. Trying... C:\Users\gillg\AppData\Local\Google\Chrome\Application\chrome.exe
+[1728418566.974][INFO]: Browser search. Trying... C:\Program Files\Google\Chrome\Application\chrome.exe
+[1728418566.974][INFO]: Browser search. Found at  C:\Program Files\Google\Chrome\Application\chrome.exe
+[1728418566.976][INFO]: Populating Preferences file: {
+   "alternate_error_pages": {
+      "enabled": false
+   },
+   "autofill": {
+      "enabled": false
+   },
+   "browser": {
+      "check_default_browser": false
+   },
+   "distribution": {
+      "import_bookmarks": false,
+      "import_history": false,
+      "import_search_engine": false,
+      "make_chrome_default_for_user": false,
+      "skip_first_run_ui": true
+   },
+   "dns_prefetching": {
+      "enabled": false
+   },
+   "profile": {
+      "content_settings": {
+         "pattern_pairs": {
+            "https://*,*": {
+               "media-stream": {
+                  "audio": "Default",
+                  "video": "Default"
+               }
+            }
+         }
+      },
+      "default_content_setting_values": {
+         "geolocation": 1
+      },
+      "default_content_settings": {
+         "geolocation": 1,
+         "mouselock": 1,
+         "notifications": 1,
+         "popups": 1,
+         "ppapi-broker": 1
+      },
+      "password_manager_enabled": false
+   },
+   "safebrowsing": {
+      "enabled": false
+   },
+   "search": {
+      "suggest_enabled": false
+   },
+   "translate": {
+      "enabled": false
+   }
+}
+[1728418566.976][INFO]: Populating Local State file: {
+   "background_mode": {
+      "enabled": false
+   },
+   "ssl": {
+      "rev_checking": {
+         "enabled": false
+      }
+   }
+}
+[1728418566.977][INFO]: ChromeDriver supports communication with Chrome via pipes. This is more reliable and more secure.
+[1728418566.977][INFO]: Use the --remote-debugging-pipe Chrome switch instead of the default --remote-debugging-port to enable this communication mode.
+[1728418566.979][INFO]: Launching chrome: "C:\Program Files\Google\Chrome\Application\chrome.exe" --allow-pre-commit-input --disable-background-networking --disable-backgrounding-occluded-windows --disable-client-side-phishing-detection --disable-default-apps --disable-hang-monitor --disable-popup-blocking --disable-prompt-on-repost --disable-sync --enable-automation --enable-logging --log-level=0 --no-first-run --no-service-autorun --password-store=basic --remote-debugging-port=0 --test-type=webdriver --use-mock-keychain --user-data-dir="C:\Users\gillg\AppData\Local\Temp\scoped_dir33288_794847724" data:,
+[1728418567.517][INFO]: resolved localhost to ["::1","127.0.0.1"]
+[1728418567.531][INFO]: [9885eb950e7d9556bd140090afc03f01] RESPONSE InitSession {
+   "capabilities": {
+      "acceptInsecureCerts": false,
+      "browserName": "chrome",
+      "browserVersion": "129.0.6668.90",
+      "chrome": {
+         "chromedriverVersion": "129.0.6668.89 (951c0b97221f8d4ba37cf97d324505c832251cf9-refs/branch-heads/6668@{#1503})",
+         "userDataDir": "C:\\Users\\gillg\\AppData\\Local\\Temp\\scoped_dir33288_794847724"
+      },
+      "fedcm:accounts": true,
+      "goog:chromeOptions": {
+         "debuggerAddress": "localhost:13071"
+      },
+      "networkConnectionEnabled": false,
+      "pageLoadStrategy": "normal",
+      "platformName": "windows",
+      "proxy": {
+      },
+      "setWindowRect": true,
+      "strictFileInteractability": false,
+      "timeouts": {
+         "implicit": 0,
+         "pageLoad": 300000,
+         "script": 30000
+      },
+      "unhandledPromptBehavior": "dismiss and notify",
+      "webauthn:extension:credBlob": true,
+      "webauthn:extension:largeBlob": true,
+      "webauthn:extension:minPinLength": true,
+      "webauthn:extension:prf": true,
+      "webauthn:virtualAuthenticators": true
+   },
+   "sessionId": "9885eb950e7d9556bd140090afc03f01"
+}
+[1728418567.650][INFO]: [9885eb950e7d9556bd140090afc03f01] COMMAND MaximizeWindow {
+}
+[1728418567.650][INFO]: Waiting for pending navigations...
+[1728418567.652][INFO]: Done waiting for pending navigations. Status: ok
+[1728418567.680][INFO]: Waiting for pending navigations...
+[1728418567.681][INFO]: Done waiting for pending navigations. Status: ok
+[1728418567.681][INFO]: [9885eb950e7d9556bd140090afc03f01] RESPONSE MaximizeWindow {
+   "height": 881,
+   "width": 1477,
+   "x": -7,
+   "y": -7
+}
+[1728418567.686][INFO]: [9885eb950e7d9556bd140090afc03f01] COMMAND Navigate {
+   "url": "https://calendar.google.com/"
+}
+[1728418567.686][INFO]: Waiting for pending navigations...
+[1728418567.687][INFO]: Done waiting for pending navigations. Status: ok
+[1728418569.303][INFO]: Waiting for pending navigations...
+[1728418572.682][INFO]: Done waiting for pending navigations. Status: ok
+[1728418572.682][INFO]: [9885eb950e7d9556bd140090afc03f01] RESPONSE Navigate
+[1728418572.690][INFO]: [9885eb950e7d9556bd140090afc03f01] COMMAND GetUrl {
+}
+[1728418572.690][INFO]: Waiting for pending navigations...
+[1728418572.700][INFO]: Done waiting for pending navigations. Status: ok
+[1728418572.707][INFO]: Waiting for pending navigations...
+[1728418572.713][INFO]: Done waiting for pending navigations. Status: ok
+[1728418572.713][INFO]: [9885eb950e7d9556bd140090afc03f01] RESPONSE GetUrl "https://workspace.google.com/intl/en-US/products/calendar/"
+[1728418572.735][INFO]: [9885eb950e7d9556bd140090afc03f01] COMMAND Navigate {
+   "url": "https://calendar.google.com/"
+}
+[1728418572.735][INFO]: Waiting for pending navigations...
+[1728418572.736][INFO]: Done waiting for pending navigations. Status: ok
+[1728418573.472][INFO]: Waiting for pending navigations...
+[1728418573.981][INFO]: Done waiting for pending navigations. Status: ok
+[1728418573.981][INFO]: [9885eb950e7d9556bd140090afc03f01] RESPONSE Navigate
+[1728418573.985][INFO]: [9885eb950e7d9556bd140090afc03f01] COMMAND FindElement {
+   "using": "xpath",
+   "value": "//button[@class='VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-INsAgc VfPpkd-LgbsSe-OWXEXe-Bz112c-UbuQg VfPpkd-LgbsSe-OWXEXe-dgl2Hf Rj2Mlf OLiIxf PDpWxe LQeN7 j9Fkxf I2n60c']"
+}
+[1728418573.985][INFO]: Waiting for pending navigations...
+[1728418573.986][INFO]: Done waiting for pending navigations. Status: ok
+[1728418574.002][INFO]: Waiting for pending navigations...
+[1728418574.003][INFO]: Done waiting for pending navigations. Status: ok
+[1728418574.003][INFO]: [9885eb950e7d9556bd140090afc03f01] RESPONSE FindElement ERROR no such element: Unable to locate element: {"method":"xpath","selector":"//button[@class='VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-INsAgc VfPpkd-LgbsSe-OWXEXe-Bz112c-UbuQg VfPpkd-LgbsSe-OWXEXe-dgl2Hf Rj2Mlf OLiIxf PDpWxe LQeN7 j9Fkxf I2n60c']"}
+  (Session info: chrome=129.0.6668.90)
