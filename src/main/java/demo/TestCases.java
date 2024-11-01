@@ -1,37 +1,27 @@
 package demo;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
-import dev.failsafe.internal.util.Assert;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 import java.util.logging.Level;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class TestCases {
-   ChromeDriver driver;
-    
 
-    public TestCases() {
+public class TestCases {
+    ChromeDriver driver;
+    public TestCases()
+    {
         System.out.println("Constructor: TestCases");
-        
-        
+
         WebDriverManager.chromedriver().timeout(30).setup();
         ChromeOptions options = new ChromeOptions();
         LoggingPreferences logs = new LoggingPreferences();
@@ -42,158 +32,193 @@ public class TestCases {
         options.setCapability("goog:loggingPrefs", logs);
 
         // Connect to the chrome-window running on debugging port
-        //options.setExperimentalOption("debuggerAddress", "127.0.0.1:9222");
+        options.setExperimentalOption("debuggerAddress", "127.0.0.1:9222");
 
         // Set path for log file
         System.setProperty(ChromeDriverService.CHROME_DRIVER_LOG_PROPERTY, "chromedriver.log");
 
-          driver = new ChromeDriver(options);
-          
+        driver = new ChromeDriver(options);
 
         // Set browser to maximize and wait
         driver.manage().window().maximize();
     }
 
-    public void endTest() {
+    public void endTest()
+    {
         System.out.println("End Test: TestCases");
         driver.close();
         driver.quit();
 
     }
 
-    public void testCase01() {
+    
+   public  void testCase01(){
         System.out.println("Start Test case: testCase01");
-        driver.get("https://calendar.google.com/");
-        // verifying URL
-
-        String currentUrl = driver.getCurrentUrl();
-        if (currentUrl.contains("calendar.")) {
-            System.out.println("URL verification successful: " + currentUrl);
-        } else {
-            System.out.println("URL verification failed. Current URL: " + currentUrl);
-            return;
+        driver.get("https://calendar.google.com");
+        String currenturl = driver.getCurrentUrl();
+        if(currenturl.contains("calendar")){
+            System.out.println("Test Passed: The link contains the word 'calendar");
+        }else{
+            System.out.println("Test Failed : The link doesn't contain the word 'calendar"); 
         }
+
         System.out.println("end Test case: testCase01");
     }
 
-    public void testCase02() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        System.out.println("Start Test case: testCase02");
-        driver.get("https://calendar.google.com/");
-        // Select Month View
-        WebElement viewButton= driver.findElement(By.xpath("//button[@class='VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-INsAgc VfPpkd-LgbsSe-OWXEXe-Bz112c-UbuQg VfPpkd-LgbsSe-OWXEXe-dgl2Hf Rj2Mlf OLiIxf PDpWxe LQeN7 j9Fkxf I2n60c']"));
-        viewButton.click();
-        WebElement monthElement = driver.findElement(By.xpath("//span[text()='Month']"));
-        monthElement.click();
+    public void testCase02() throws InterruptedException{
+        System.out.println("Starting testCase02");
+        //driver.get("https://calendar.google.com");
 
-        WebElement pageContent = wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("body"))); // Get the page body
-        String pageText = pageContent.getText();
+
+            Thread.sleep(4000);
         
-        if (pageText.contains("Month")) {
-            System.out.println("Switched to Month view successfully.");
-        } else {
-            System.out.println("Failed to switch to Month view.");
+
+        WebElement switchtotab = driver.findElement(By.xpath("//div[@class='VfPpkd-xl07Ob-XxIAqe-OWXEXe-oYxtQd Cd9hpd']"));
+        switchtotab.click();
+
+        Thread.sleep(2000);
+
+        WebElement monthbutton = driver.findElement(By.xpath("//span[text()='Month']"));
+        monthbutton.click();
+
+        WebElement Tab = driver.findElement(By.xpath("(//span[@class='VfPpkd-vQzf8d'])[5]"));
+
+       String text =  Tab.getText();
+        if(text.contains("Month")){
+            System.out.println("month is selected");
+        }else{
+            System.out.println("month is not selected");
+        }
+        System.out.println("Clicked on month");
+        WebElement newcreate = driver.findElement(By.className("mr0WL"));
+        newcreate.click();
+        System.out.println("clicked on create Tab");
+
+        try {
+            // Pause execution for 5 seconds (5000 milliseconds)
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            System.out.println("Sleep interrupted: " + e.getMessage());
+        }
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        //WebElement taskTab = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[text()='Task'])[1]")));
+        WebElement taskTab = driver.findElement(By.xpath("(//div[text()='Task'])[1]"));
+        taskTab.click();
+        System.out.println("Task tab clicked");
+        
+        try {
+            // Pause execution for 5 seconds (5000 milliseconds)
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            System.out.println("Sleep interrupted: " + e.getMessage());
+        }
+        WebElement Title = driver.findElement(By.xpath("(//input[@class='VfPpkd-fmcmS-wGMbrd '])[2]"));
+        Title.click();
+        System.out.println("add new button clicked");
+        Title.sendKeys("Crio INTV Task Automation");
+
+
+        WebElement descriptionBox = driver.findElement(By.xpath("//textarea[@class='VfPpkd-fmcmS-wGMbrd TaTzUd']"));
+        descriptionBox.click();
+        System.out.println("description box clicked");
+        descriptionBox.sendKeys("Crio INTV Calendar Task Automation");
+
+
+        try {
+            // Pause execution for 5 seconds (5000 milliseconds)
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            System.out.println("Sleep interrupted: " + e.getMessage());
         }
 
-
-        
-
-        WebElement calArea = driver.findElement(By.xpath("//div[@id='YPCqFe']"));
-        calArea.click();
-
-        Thread.sleep(3000);
-
-        WebElement taskButton = driver.findElement(By.xpath("//div[@class='x5FT4e kkUTBb' and text()='Task']"));
-        taskButton.click();
-
-        WebElement addTask = driver.findElement(By.xpath("//input[@placeholder='Add title and time']"));
-        addTask.sendKeys("Crio INTV Task Automation");
-
-        WebElement description = driver.findElement(By.xpath("//textarea[@placeholder='Add description']"));
-        description.sendKeys("Crio INTV Calendar Task Automation");
-
-        WebElement savElement = driver.findElement(By.xpath("//button[@class='VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-k8QpJ VfPpkd-LgbsSe-OWXEXe-dgl2Hf nCP5yc AjY5Oe DuMIQc LQeN7 pEVtpe']"));
-        savElement.click();
-       
-        WebElement popupMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Task created']"))); // Example selector, adjust as needed
-
-        // Verify the popup message
-        String expectedMessage = "Task created";
-        String actualMessage = popupMessage.getText();
-        if (expectedMessage.equals(actualMessage)) {
-            System.out.println("Popup message verified successfully: " + actualMessage);
-        } else {
-            System.out.println("Popup message verification failed. Expected: " + expectedMessage + ", but got: " + actualMessage);
-        }
-       
-    }
-
-    public void testCase03() throws InterruptedException {
-        System.out.println("Start Test case: testCase03");
-        driver.get("https://calendar.google.com/");
+        WebElement save = driver.findElement(By.xpath("//button[@data-idom-class='nCP5yc AjY5Oe DuMIQc LQeN7 pEVtpe']"));
+        save.click();
 
         Thread.sleep(5000);
-    
-        // Wait for the calendar area to be clickable and click it
-        WebElement addedTask = driver.findElement(By.xpath("//span[text()='Crio INTV Task Automation']"));
-        addedTask.click();
-
-        Thread.sleep(4000);
-        //Verify task Title 
-
         
-    
-        WebElement editTask = driver.findElement(By.xpath("//button[@aria-label='Edit task']"));
-        editTask.click();
 
-        Thread.sleep(5000);
-    
-        // Find the description field
-        WebElement description = driver.findElement(By.xpath("//textarea[text()='Crio INTV Calendar Task Automation']"));
-        description.clear();
-        // Clear the description field using JavaScript
-        //js.executeScript("arguments[0].value='';", description);
-    
-        // Update the description field
-        description.sendKeys( "Crio INTV Task Automation is a test suite designed for automating various tasks on the Google Calendar web application");
-    
-        // Save the task using the Save button
-        WebElement savElement = driver.findElement(By.xpath("//button[@class='VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-k8QpJ VfPpkd-LgbsSe-OWXEXe-dgl2Hf nCP5yc AjY5Oe DuMIQc LQeN7']"));
-        savElement.click();
+        WebElement reverifyBtn = driver.findElement(By.xpath("(//span[@class='WBi6vc'])[4]"));
+        reverifyBtn.click();
+        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement popupMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Task updated']"))); // Example selector, adjust as needed
+// Wait for the element to be visible
+WebElement titleelem = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='rAECCd']")));
+Thread.sleep(2000);
+JavascriptExecutor js = (JavascriptExecutor) driver;
+js.executeScript("arguments[0].value='';",titleelem );  // Modify the innerText of the span
 
-        // Verify the popup message
-        String expectedMessage = "Task updated";
-        String actualMessage = popupMessage.getText();
-        if (expectedMessage.equals(actualMessage)) {
-            System.out.println("Popup message verified successfully: " + actualMessage);
-        } else {
-            System.out.println("Popup message verification failed. Expected: " + expectedMessage + ", but got: " + actualMessage);
+// Check if it contains the desired text
+System.out.println("Title text is: "+titleelem.getText());
+if(titleelem.getText().contains("Crio INTV Task Automation")){
+    System.out.println("contains TEXT");
+} else {
+    System.out.println("Doesn't contain text");
+}
+        
+        WebElement descriptionelem = driver.findElement(By.xpath("//div[@id='xDetDlgDesc']"));
+        js.executeScript("arguments[0].value='';", descriptionelem);
+        System.out.println("Description Text is:"+descriptionelem.getText());
+        if(descriptionelem.getText().contains("Crio INTV Calendar Task Automation")){
+            System.out.println("contains TEXT");
+
+        }else{
+            System.out.println("Doesnt contain text");
         }
         Thread.sleep(2000);
-    
-        // WebElement taskTab = driver.findElement(By.xpath("//div[@aria-label='Tasks']"));
-        // taskTab.click();
-
-        WebElement addedTask1 = driver.findElement(By.xpath("//span[text()='Crio INTV Task Automation']"));
-        addedTask1.click();
-    // addedTask.click();
-         WebElement updatedDescription = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='xDetDlgDesc']")));
-         if((updatedDescription.getText().equals("Crio INTV Task Automation is a test suite designed for automating various tasks on the Google Calendar web application"))){
-            System.out.println("Updated Description Successfully");
-         } 
-         else{
-            System.out.println("Updation Verification Failed");
-         }       
-        System.out.println("End Test case: testCase03");
     }
-
+    
+    public void testCase03() throws InterruptedException {
+        System.out.println("Starting testCase03");
+        //driver.get("https://calendar.google.com/");
+    
+        try {
+            // Pause execution for 5 seconds (5000 milliseconds)
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            System.out.println("Sleep interrupted: " + e.getMessage());
+        }
+    
+        // Find and click on the second task in the calendar
+        WebElement selectedTask = driver.findElement(By.xpath("(//span[@class='nHqeVd'])[3]"));
+        selectedTask.click();
+         Thread.sleep(5000);
+    
+        // Click on the edit button
+        WebElement editButton = driver.findElement(By.xpath("(//button[@class='VfPpkd-Bz112c-LgbsSe yHy1rc eT1oJ mN1ivc m2yD4b HfYfLe'])[1]"));
+        editButton.click();
+         Thread.sleep(4000);
+    
+        // Update the task description
+        WebElement descriptionField = driver.findElement(By.xpath("//textarea[@class='VfPpkd-fmcmS-wGMbrd vRGQ0d']"));
+        descriptionField.click();
+        descriptionField.clear();
+        descriptionField.sendKeys("Crio INTV Task Automation is a test suite designed for automating various tasks on the Google Calendar web application");
+    
+        // Save the changes
+        WebElement saveButton = driver.findElement(By.xpath("//span[text()='Save']"));
+        saveButton.click();
+    
+        // Wait for 3 seconds
+        Thread.sleep(3000);
+    
+        // Re-verify the updated description
+        WebElement verifyTask = driver.findElement(By.xpath("(//span[@class='nHqeVd'])[3]"));
+        Thread.sleep(5000);
+        verifyTask.click();
+    
+        WebElement descriptionVerification = driver.findElement(By.id("xDetDlgDesc"));
+        System.out.println("Verified Description is: "+descriptionVerification.getText());
+        Thread.sleep(5000);
+        if (descriptionVerification.getText().contains("Crio INTV Task Automation is a test suite designed for automating various tasks on the Google Calendar web application")) {
+            System.out.println("Description contains the correct text");
+        } else {
+            System.out.println("Description does not contain the correct text");
+        }
+    }
     public void testCase04() throws InterruptedException {
 
         System.out.println("Start Test case: testCase04");
-        driver.get("https://calendar.google.com/");
+        driver.get("https://calendar.google.com/calendar/u/0/r");
 
         Thread.sleep(5000);
 
@@ -234,3 +259,5 @@ public class TestCases {
 
        
 }
+    
+    
